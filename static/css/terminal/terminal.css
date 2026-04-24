@@ -142,9 +142,16 @@ div#logo a img {
     /* ----- TitleBox (card component) ------------------------------ */
     .titlebox { border-color: #8ab58a; }
 
-    .titlebox .titlebox-title { background-color: #2d7a2d; }
+    .titlebox .titlebox-title { background-color: #2d7a2d; color: #f2f7ed; }
 
     .titlebox .titlebox-title .left { color: #f2f7ed; }
+
+    /* Headings inside title bar get dark green from the h1-h4 rule above;
+       override to keep them readable on the dark green background */
+    .titlebox .titlebox-title h1,
+    .titlebox .titlebox-title h2,
+    .titlebox .titlebox-title h3,
+    .titlebox .titlebox-title h4 { color: #f2f7ed; }
 
     .titlebox .titlebox-title .right a { color: #d0f0d0; }
 
