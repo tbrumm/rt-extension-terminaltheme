@@ -15,18 +15,23 @@
     --terminal-font: 'Courier New', 'DejaVu Sans Mono', 'Lucida Console', Courier, monospace;
 }
 
-/* Apply monospace font globally for the terminal aesthetic */
+/* Monospace font for content areas — not navbar (would break layout/overflow calc) */
 body,
-button,
-input,
-select,
-textarea,
+.titlebox .titlebox-title .left,
 .form-control,
 .form-select,
-.btn,
+textarea,
+table,
 .badge,
-.titlebox .titlebox-title .left {
+pre, code, tt {
     font-family: var(--terminal-font);
+}
+
+/* Fix terminal logo aspect ratio (SVG has wrong width/height vs viewBox 858×144) */
+div#logo a img {
+    aspect-ratio: 858 / 144 !important;
+    height: 100% !important;
+    width: auto !important;
 }
 
 
@@ -150,7 +155,8 @@ textarea,
 
     /* ----- Buttons ------------------------------------------------- */
     .btn-primary,
-    input[type=submit].btn-primary {
+    input[type=submit].btn-primary,
+    input[type=button].btn-primary {
         background-color: #2d7a2d;
         border-color:     #1a4a1a;
         color:            #f2f7ed;
@@ -160,7 +166,40 @@ textarea,
         border-color:     #0a2a0a;
     }
 
-    #topactions form input.btn { border-color: #2d7a2d; }
+    .btn-secondary,
+    .btn-default {
+        border-color: #8ab58a;
+        color:        #0d2b0d;
+    }
+
+    /* Topactions: "Create new ticket" and search */
+    #topactions form input.btn,
+    #topactions .btn {
+        border-color: #2d7a2d;
+        background-color: #1a4a1a;
+        color: #d0f0d0;
+    }
+    #topactions form input.btn:hover,
+    #topactions .btn:hover {
+        background-color: #2d7a2d;
+        color: #f2f7ed;
+    }
+
+    /* Form inputs */
+    .form-control,
+    .form-select,
+    input[type=text],
+    input[type=search],
+    input[type=email] {
+        background-color: #f8fdf5;
+        color:            #0d2b0d;
+        border-color:     #8ab58a;
+    }
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2d7a2d;
+        box-shadow:   0 0 0 0.25rem rgba(45, 122, 45, 0.2);
+    }
 
     /* ----- Login page --------------------------------------------- */
     #login-box { border-color: #2d7a2d; }
@@ -171,6 +210,16 @@ textarea,
         border-color:     #8ab58a;
         color:            #0d2b0d;
     }
+
+    /* ----- Status badges — make them terminal-green -------------- */
+    .badge.bg-success,
+    .badge.bg-primary { background-color: #2d7a2d !important; }
+
+    .badge.bg-secondary { background-color: #5a9a5a !important; }
+
+    /* RT status color overrides for ticket status badges */
+    span.rt-status-new,
+    .label-status-new { background-color: #1a4a1a !important; color: #d0f0d0 !important; }
 }
 
 
