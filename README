@@ -10,7 +10,7 @@ DESCRIPTION
     this theme on the Best Practical blog <https://bestpractical.com/blog>.
 
 RT VERSION
-    Works with RT 5.
+    Works with RT 6.
 
 INSTALLATION
     perl Makefile.PL
@@ -18,13 +18,13 @@ INSTALLATION
     make install
         May need root permissions.
 
-    Edit your /opt/rt5/etc/RT_SiteConfig.pm
+    Edit your /opt/rt6/etc/RT_SiteConfig.pm
         Add this line:
 
             Plugin('RT::Extension::TerminalTheme');
 
     Clear your mason cache
-            rm -rf /opt/rt5/var/mason_data/obj
+            rm -rf /opt/rt6/var/mason_data/obj
 
     Restart your webserver
 
