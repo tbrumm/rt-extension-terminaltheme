@@ -1,0 +1,381 @@
+/* ===================================================================
+ * RT Terminal Theme — Bootstrap 5 color & style overrides for RT6
+ *
+ * Light mode: pale-green CRT screen aesthetic
+ * Dark mode:  classic phosphor green on near-black
+ * =================================================================== */
+
+/* --- CSS custom properties used throughout the theme -------------- */
+:root {
+    --terminal-green-bright: #33ff33;
+    --terminal-green-mid:    #22cc22;
+    --terminal-green-dim:    #1a8a1a;
+    --terminal-green-dark:   #0d4a0d;
+    --terminal-near-black:   #050f05;
+    --terminal-font: 'Courier New', 'DejaVu Sans Mono', 'Lucida Console', Courier, monospace;
+}
+
+/* Apply monospace font globally for the terminal aesthetic */
+body,
+button,
+input,
+select,
+textarea,
+.form-control,
+.form-select,
+.btn,
+.badge,
+.titlebox .titlebox-title .left {
+    font-family: var(--terminal-font);
+}
+
+
+/* ===================================================================
+ * LIGHT MODE — pale-green tinted screen
+ * =================================================================== */
+[data-bs-theme=light] {
+    /* Bootstrap 5 core */
+    --bs-body-color:              #0d2b0d;
+    --bs-body-color-rgb:          13, 43, 13;
+    --bs-body-bg:                 #f2f7ed;
+    --bs-body-bg-rgb:             242, 247, 237;
+
+    --bs-primary:                 #2d7a2d;
+    --bs-primary-rgb:             45, 122, 45;
+
+    --bs-link-color:              #145214;
+    --bs-link-color-rgb:          20, 82, 20;
+    --bs-link-hover-color:        #0a2a0a;
+    --bs-link-hover-color-rgb:    10, 42, 10;
+    --bs-link-decoration:         none;
+
+    --bs-border-color:            #8ab58a;
+    --bs-border-color-translucent: rgba(138, 181, 138, 0.18);
+
+    --bs-card-bg:                 #eaf2e4;
+    --bs-card-border-color:       #8ab58a;
+
+    --bs-secondary-bg:            #e2eedb;
+    --bs-tertiary-bg:             #d5e8cc;
+
+    /* Gray scale shifted to greens */
+    --bs-gray-100:                #eef5e8;
+    --bs-gray-200:                #deecd6;
+    --bs-gray-300:                #bdd9b5;
+    --bs-gray-400:                #8ab58a;
+    --bs-gray-500:                #5a9a5a;
+    --bs-gray-600:                #3d7a3d;
+    --bs-gray-700:                #2a602a;
+    --bs-gray-800:                #1a4a1a;
+    --bs-gray-900:                #0a2200;
+}
+
+[data-bs-theme=light] {
+    h1, h2, h3, h4 { color: #0a2200; }
+
+    a:not(.btn):visited { color: #4a8a4a; }
+
+    /* ----- Header bar & logo area --------------------------------- */
+    div#quickbar {
+        background-color: #0a1a0a;
+        border-bottom-color: #22aa22;
+    }
+
+    div#footer {
+        background-color: #0a1a0a;
+    }
+    div#footer p,
+    div#footer a { color: #22cc22; }
+
+    div#header { border-bottom-color: #2d7a2d; }
+
+    /* ----- Main navigation (dark bar with green text) ------------- */
+    .navbar { background-color: #0a1a0a; }
+
+    .navbar a.nav-link,
+    .navbar li a { color: #22cc22 !important; }
+
+    .navbar a.nav-link:hover,
+    #app-nav > li > a:hover {
+        background-color: #1a3a1a;
+        color: #44ff44 !important;
+    }
+
+    body.keyboard-nav-active #app-nav > li > a.menu-item:focus,
+    body.keyboard-nav-active .page-menu > li > a.menu-item:focus {
+        background: #1a3a1a;
+    }
+
+    /* ----- Dropdown menus ----------------------------------------- */
+    .dropdown-menu {
+        background-color: #0f2a0f;
+        border-color: #2d7a2d;
+    }
+
+    .dropdown-item,
+    a.dropdown-item { color: #22cc22; background-color: #0f2a0f; }
+
+    a.dropdown-item.hovered,
+    .dropdown-item:hover,
+    .dropdown-item:focus { background-color: #1a3a1a; color: #44ff44; }
+
+    .dropdown-divider { border-color: #1a4a1a; }
+
+    /* ----- Page menu pinned to top --------------------------------- */
+    .page-menu.pinned {
+        background-color: #f2f7ed;
+        border-left-color:   #8ab58a;
+        border-bottom-color: #8ab58a;
+        box-shadow: 0 0 10px rgba(0, 80, 0, 0.2);
+    }
+
+    .page-menu.pinned li:hover ul {
+        border-left-color:  #8ab58a;
+        border-right-color: #8ab58a;
+    }
+
+    /* ----- TitleBox (card component) ------------------------------ */
+    .titlebox { border-color: #8ab58a; }
+
+    .titlebox .titlebox-title { background-color: #2d7a2d; }
+
+    .titlebox .titlebox-title .left { color: #f2f7ed; }
+
+    .titlebox .titlebox-title .right a { color: #d0f0d0; }
+
+    /* ----- Tables -------------------------------------------------- */
+    .table { --bs-table-hover-bg: #deecd6; }
+
+    .table-active { --bs-table-bg-state: #deecd6; }
+
+    /* ----- Buttons ------------------------------------------------- */
+    .btn-primary,
+    input[type=submit].btn-primary {
+        background-color: #2d7a2d;
+        border-color:     #1a4a1a;
+        color:            #f2f7ed;
+    }
+    .btn-primary:hover {
+        background-color: #1a6a1a;
+        border-color:     #0a2a0a;
+    }
+
+    #topactions form input.btn { border-color: #2d7a2d; }
+
+    /* ----- Login page --------------------------------------------- */
+    #login-box { border-color: #2d7a2d; }
+
+    /* ----- Alerts -------------------------------------------------- */
+    .alert-info {
+        background-color: #deecd6;
+        border-color:     #8ab58a;
+        color:            #0d2b0d;
+    }
+}
+
+
+/* ===================================================================
+ * DARK MODE — classic phosphor green on near-black
+ * =================================================================== */
+[data-bs-theme=dark] {
+    /* Bootstrap 5 core */
+    --bs-body-color:              #33ff33;
+    --bs-body-color-rgb:          51, 255, 51;
+    --bs-body-bg:                 #050f05;
+    --bs-body-bg-rgb:             5, 15, 5;
+
+    --bs-primary:                 #00cc44;
+    --bs-primary-rgb:             0, 204, 68;
+
+    --bs-link-color:              #00ff66;
+    --bs-link-color-rgb:          0, 255, 102;
+    --bs-link-hover-color:        #66ff99;
+    --bs-link-hover-color-rgb:    102, 255, 153;
+    --bs-link-decoration:         none;
+
+    --bs-border-color:            #1a5a1a;
+    --bs-border-color-translucent: rgba(26, 90, 26, 0.18);
+
+    --bs-card-bg:                 #0a1a0a;
+    --bs-card-border-color:       #1a5a1a;
+
+    --bs-secondary-color:         rgba(26, 170, 26, 0.75);
+    --bs-secondary-bg:            #0a1a0a;
+    --bs-tertiary-bg:             #081208;
+
+    /* Gray scale shifted to dark greens */
+    --bs-gray-100:                #0d1a0d;
+    --bs-gray-200:                #112211;
+    --bs-gray-300:                #1a3a1a;
+    --bs-gray-400:                #225522;
+    --bs-gray-500:                #2a6e2a;
+    --bs-gray-600:                #338833;
+    --bs-gray-700:                #44aa44;
+    --bs-gray-800:                #55cc55;
+    --bs-gray-900:                #66ee66;
+}
+
+[data-bs-theme=dark] {
+    p, li span { color: #33ff33; }
+
+    h1, h2, h3, h4 { color: #44ff44; }
+
+    /* Subtle glow on large headings for phosphor effect */
+    h1 { text-shadow: 0 0 10px rgba(0, 255, 51, 0.35); }
+    h2 { text-shadow: 0 0 8px  rgba(0, 255, 51, 0.25); }
+
+    svg { fill: #33ff33; }
+
+    a:not(.btn):visited { color: #22aa22; }
+
+    /* ----- Header bar & logo area --------------------------------- */
+    div#quickbar {
+        background-color: #030803;
+        border-bottom-color: #1a5a1a;
+    }
+
+    div#footer {
+        background-color: #030803;
+        border-top: 1px solid #1a5a1a;
+    }
+    div#footer p,
+    div#footer a { color: #1aaa1a; }
+
+    div#header { border-bottom-color: #00cc44; }
+
+    /* ----- Main navigation ---------------------------------------- */
+    .navbar { background-color: #030803; }
+
+    .navbar li a { color: #22cc22 !important; }
+
+    #app-nav > li > a.menu-item:hover,
+    .navbar a.nav-link:hover {
+        background: #0a2a0a;
+        color: #44ff44 !important;
+    }
+
+    body.keyboard-nav-active #app-nav > li > a.menu-item:focus,
+    body.keyboard-nav-active .page-menu > li > a.menu-item:focus {
+        background: #0a2a0a;
+    }
+
+    /* ----- Dropdown menus ----------------------------------------- */
+    .dropdown-menu { background: #0a1a0a; border-color: #1a5a1a; }
+
+    .dropdown-item,
+    .dropdown-item *,
+    a.dropdown-item { background: #0a1a0a; color: #22cc22; }
+
+    .dropdown-divider { border-color: #1a2a1a; }
+
+    .dropdown-item.hovered,
+    .dropdown-item:hover,
+    .dropdown-item:focus { background: #112211; color: #44ff44; }
+
+    /* ----- Page menu pinned --------------------------------------- */
+    .page-menu.pinned {
+        background-color: #0a1a0a;
+        box-shadow: 0 0 10px rgba(0, 204, 68, 0.12);
+    }
+    .page-menu.pinned ul {
+        border-color: #1a5a1a;
+    }
+    .page-menu.pinned li:hover ul {
+        border-left-color:  #1a5a1a;
+        border-right-color: #1a5a1a;
+    }
+
+    /* ----- Tables -------------------------------------------------- */
+    .table td               { color: #33ff33; }
+    table.table th          { border: none; color: #44ff44; }
+    .table th, .table td    { border-top: 1px solid #1a5a1a; }
+    table a:visited         { color: #22aa22; }
+    .table                  { --bs-table-hover-bg: #0f2a0f; }
+    .table-active           { --bs-table-bg-state: #0f2a0f; }
+
+    /* ----- Nav tabs / pills --------------------------------------- */
+    .nav-tabs { border-bottom: 1px solid #1a5a1a; }
+
+    .nav-tabs .nav-link:hover,
+    .nav-tabs .nav-link.active {
+        border-color:     #1a5a1a;
+        background-color: #0a1a0a;
+        color:            #44ff44;
+    }
+
+    .nav-pills .nav-link.active { background-color: #1a3a1a !important; }
+
+    /* ----- Forms --------------------------------------------------- */
+    .form-control,
+    .form-select {
+        background-color: #0a1a0a;
+        color:            #33ff33;
+        border-color:     #1a5a1a;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        background-color: #0a1a0a;
+        color:            #44ff44;
+        border-color:     #2d7a2d;
+        box-shadow: 0 0 0 0.25rem rgba(0, 204, 68, 0.2);
+    }
+
+    .form-control::placeholder { color: #1a5a1a; }
+
+    .input-group-text {
+        background-color: #0d2a0d;
+        color:            #22cc22;
+        border-color:     #1a5a1a;
+    }
+
+    /* ----- Buttons ------------------------------------------------ */
+    .btn-primary {
+        background-color: #0d3d0d;
+        color:            #33ff33;
+        border-color:     #1a5a1a;
+    }
+    .btn-primary:hover {
+        background-color: #1a5a1a;
+        border-color:     #2d7a2d;
+        color:            #44ff44;
+    }
+
+    .btn-secondary,
+    .btn-default {
+        background-color: #0a1a0a;
+        color:            #22cc22;
+        border-color:     #1a5a1a;
+    }
+    .btn-secondary:hover,
+    .btn-default:hover {
+        background-color: #112211;
+        color:            #44ff44;
+    }
+
+    /* ----- Cards / TitleBox --------------------------------------- */
+    .card {
+        background-color: #0a1a0a;
+        border-color:     #1a5a1a;
+    }
+    .titlebox { border-color: #1a5a1a; }
+
+    /* ----- Badges ------------------------------------------------- */
+    .badge { font-family: var(--terminal-font); }
+
+    /* ----- Login page --------------------------------------------- */
+    #login-box { border-color: #1a5a1a; }
+
+    /* ----- jGrowl notifications ----------------------------------- */
+    .jGrowl-notification {
+        background-color: #0a1a0a;
+        color:            #33ff33;
+        border:           1px solid #1a5a1a;
+    }
+
+    /* ----- Custom scrollbar (WebKit) ------------------------------ */
+    ::-webkit-scrollbar               { width: 8px; background-color: #050f05; }
+    ::-webkit-scrollbar-thumb         { background-color: #1a5a1a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover   { background-color: #2d7a2d; }
+    ::-webkit-scrollbar-track         { background-color: #050f05; }
+}

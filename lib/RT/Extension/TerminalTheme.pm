@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package RT::Extension::TerminalTheme;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -10,14 +10,13 @@ RT-Extension-TerminalTheme - Classic "green screen" terminal theme for RT
 
 =head1 DESCRIPTION
 
-Provides a theme with light and dark modes that resemble a classic CRT "green
-screen" terminal and serve as a good example of how to theme Request Tracker.
-You can L<read more|https://bestpractical.com/blog/2021/1/terminal-theme-for-rt5> about
-this theme on the L<Best Practical blog|https://bestpractical.com/blog>.
+Provides a theme that resembles a classic CRT "green screen" terminal.
+Supports both light (pale-green tinted) and dark (phosphor-green on black)
+modes via Bootstrap 5's C<data-bs-theme> mechanism.
 
 =head1 RT VERSION
 
-Works with RT 5.
+Works with RT 6.
 
 =head1 INSTALLATION
 
@@ -31,15 +30,22 @@ Works with RT 5.
 
 May need root permissions.
 
-=item Edit your F</opt/rt5/etc/RT_SiteConfig.pm>
+=item Edit your F</opt/rt6/etc/RT_SiteConfig.pm>
 
-Add this line:
+Add these lines:
 
     Plugin('RT::Extension::TerminalTheme');
+    Set($WebDefaultStylesheet, 'terminal');
+
+To default to dark (phosphor-green) mode, also add:
+
+    Set($WebDefaultThemeMode, 'dark');
+
+Users can still override the theme mode in their personal preferences.
 
 =item Clear your mason cache
 
-    rm -rf /opt/rt5/var/mason_data/obj
+    rm -rf /opt/rt6/var/mason_data/obj
 
 =item Restart your webserver
 
@@ -62,7 +68,7 @@ href="http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-TerminalThem
 
 =head1 LICENSE AND COPYRIGHT
 
-This software is Copyright (c) 2021 by Best Practical Solutions, LLC
+This software is Copyright (c) 2021-2025 by Best Practical Solutions, LLC
 
 This is free software, licensed under:
 

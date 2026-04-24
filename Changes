@@ -1,4 +1,20 @@
 Revision history for RT-Extension-TerminalTheme
 
+0.02 2025-04-24
+ - Port to RT 6 (requires_rt 6.0.0, rt_too_new 7.0.0)
+ - Replace terminal-light/terminal-dark dual stylesheet with a single
+   "terminal" stylesheet; light/dark mode now controlled via the standard
+   RT6 WebDefaultThemeMode config option (Bootstrap 5 data-bs-theme)
+ - Rewrite all CSS as Bootstrap 5 overrides using CSS custom properties;
+   the theme inherits the full elevator stylesheet and applies only delta
+   overrides for colours, fonts, and layout
+ - Apply monospace font (Courier New/system fallbacks) throughout
+ - Update Mason templates (InHeader, BeforeNav, AfterMenus) for RT6:
+   new navigation IDs (#main-navigation, #page-navigation), Bootstrap 5
+   class manipulations, and HTMX registerLoadListener support
+ - Add SmallLogoURL injection for responsive logo display
+ - Drop bundled Inter font files and RT5 CSS copies (inherited from elevator)
+ - Drop Superfish menu JS (not used in RT6)
+
 0.01 2021-03-11
  - Initial version

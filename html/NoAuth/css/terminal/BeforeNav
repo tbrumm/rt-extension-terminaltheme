@@ -1,0 +1,118 @@
+<%INIT>
+return unless Menu; # In case we are in Installer mode
+
+my $page_overflow = PageMenu->child( overflow => title => loc('More'), sort_order => 99999);
+# add a child element to make sure we get a dropdown indicator
+$page_overflow->child(will_be_deleted => raw_html => '');
+</%INIT>
+<script type="text/javascript">
+var rebalanceOverflowBuffer = 10;
+
+var rebalanceOverflowMenu = function (menuId, overflowId) {
+    var toplevelMenu = jQuery(menuId);
+    var overflowMenu = jQuery(overflowId);
+    var availableWidth = jQuery(window).width();
+
+    if ( menuId === '#main-navigation' ) {
+        const logo = document.querySelector('#logo');
+        if ( logo.offsetWidth == 0 ) {
+            return;
+        }
+        document.querySelector('#topactions').style.right = 'calc(' + [logo.offsetWidth + 'px', window.getComputedStyle(logo).right, '1em'].join(' + ') + ')';
+        availableWidth -= jQuery('#topactions').width() + jQuery('#logo').width();;
+    }
+    else if ( menuId === '#page-navigation' ) {
+        availableWidth -= parseFloat(jQuery('#header h1').css('padding-left'));
+        availableWidth -= parseFloat(jQuery('#page-navigation').css('right'));
+        var fullWidth = availableWidth;
+        jQuery('#header h1').css('width', 'auto');
+        var subjectWidth = jQuery('#header h1').width();
+        availableWidth -= subjectWidth;
+
+        if (availableWidth < fullWidth * 0.5) {
+            availableWidth = fullWidth * 0.5;
+            subjectWidth = fullWidth * 0.5;
+            jQuery('#header h1').css('width', subjectWidth);
+        }
+    }
+
+    availableWidth -= rebalanceOverflowBuffer;
+
+    while (toplevelMenu.width() > availableWidth) {
+        var item = toplevelMenu.find('li.nav-item:not('+overflowId+')').get(-1);
+        if (!item) { break; }
+
+        jQuery(item).remove();
+        item.classList.remove('nav-item');
+        item.classList.add('menu-item');
+        item.classList.remove('dropdown');
+        item.classList.add('dropend');
+        const link = item.querySelector('a.nav-link');
+        link.classList.remove('nav-link');
+        link.classList.add('dropdown-item');
+
+        overflowMenu.children('ul').prepend(item);
+        overflowMenu.addClass('has-overflow');
+    }
+
+    while (1) {
+        var item = overflowMenu.find('li').get(0);
+        if (!item) { break; }
+        item = jQuery(item);
+
+        var clone = item.clone();
+        overflowMenu.before(clone);
+        var prospectiveWidth = toplevelMenu.width();
+        clone.remove();
+
+        if (prospectiveWidth > availableWidth) { break; }
+
+        item.remove();
+        overflowMenu.before(item);
+
+        item = item.get(0);
+        item.classList.remove('dropend');
+        item.classList.add('dropdown');
+        item.classList.remove('menu-item');
+        item.classList.add('nav-item');
+        const link = item.querySelector('a.dropdown-item');
+        link.classList.remove('dropdown-item');
+        link.classList.add('nav-link');
+
+        if (overflowMenu.find('li').length == 0) {
+            overflowMenu.removeClass('has-overflow');
+        }
+    }
+
+    if ( menuId === '#main-navigation' ) {
+        if ( jQuery(window).width() - jQuery('#topactions').width() - toplevelMenu.width() - jQuery('#logo').width() > 80 ) {
+            jQuery('#topactions input[type=search]:not(.expand)').addClass('expand');
+        }
+        else {
+            jQuery('#topactions input[type=search].expand').removeClass('expand');
+        }
+    }
+};
+
+jQuery(function() {
+    jQuery(window).resize(function () {
+        rebalanceOverflowMenu('#main-navigation', '#li-overflow');
+        rebalanceOverflowMenu('#page-navigation', '#li-page-overflow');
+    });
+
+    document.querySelectorAll('#logo img').forEach(function(img) {
+        img.addEventListener('load', function() {
+            if ( this.offsetWidth > 0 ) {
+                rebalanceOverflowMenu('#main-navigation', '#li-overflow');
+            }
+        });
+    });
+});
+
+registerLoadListener(function (evt) {
+    if ( evt.detail.elt.classList.contains('main-container') ) {
+        rebalanceOverflowMenu('#main-navigation', '#li-overflow');
+        rebalanceOverflowMenu('#page-navigation', '#li-page-overflow');
+    }
+});
+</script>
