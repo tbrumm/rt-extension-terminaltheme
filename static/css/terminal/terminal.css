@@ -142,6 +142,10 @@ div#logo a img {
     /* ----- TitleBox (card component) ------------------------------ */
     .titlebox { border-color: #8ab58a; }
 
+    /* elevator sets card-header to font-size:larger and .left to 1.1em on top;
+       reset to 1rem so the monospace font doesn't compound into oversized headers */
+    .titlebox .card-header { font-size: 1rem; }
+
     .titlebox .titlebox-title { background-color: #2d7a2d; color: #f2f7ed; }
 
     .titlebox .titlebox-title .left,
