@@ -13,3 +13,4 @@ pod2htm*.tmp
 /t/tmp
 /xt/tmp
 CLAUDE.md
+./claude
