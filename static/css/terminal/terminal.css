@@ -144,7 +144,9 @@ div#logo a img {
 
     .titlebox .titlebox-title { background-color: #2d7a2d; color: #f2f7ed; }
 
-    .titlebox .titlebox-title .left { color: #f2f7ed; }
+    .titlebox .titlebox-title .left,
+    .titlebox .titlebox-title .left a,
+    .titlebox .titlebox-title .left a:visited { color: #f2f7ed; }
 
     /* Headings inside title bar get dark green from the h1-h4 rule above;
        override to keep them readable on the dark green background */
@@ -153,7 +155,8 @@ div#logo a img {
     .titlebox .titlebox-title h3,
     .titlebox .titlebox-title h4 { color: #f2f7ed; }
 
-    .titlebox .titlebox-title .right a { color: #d0f0d0; }
+    .titlebox .titlebox-title .right a,
+    .titlebox .titlebox-title .right a:visited { color: #d0f0d0; }
 
     /* ----- Tables -------------------------------------------------- */
     .table { --bs-table-hover-bg: #deecd6; }
